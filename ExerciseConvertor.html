@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Calozies</title>
+  <meta charset="UTF-8">
+  <link rel="stylesheet" href="calozies.css">
+  <link rel="icon" href="https://i.ibb.co/HX6nSdx/Black-and-Cream-Hair-Stylist-Fashion-Logo-4.png/>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+</head>
+<style>
+body {
+  font-family: "Lato", sans-serif;
+}
+
+.sidenav {
+  height: 100%;
+  width: 0;
+  position: fixed;
+  z-index: 1;
+  top: 0;
+  left: 0;
+  background-color: #111;
+  overflow-x: hidden;
+  transition: 0.5s;
+  padding-top: 60px;
+}
+
+.sidenav a {
+  padding: 8px 8px 8px 32px;
+  text-decoration: none;
+  font-size: 25px;
+  color: #818181;
+  display: block;
+  transition: 0.3s;
+}
+
+.sidenav a:hover {
+  color: #f1f1f1;
+}
+
+.sidenav .closebtn {
+  position: absolute;
+  top: 0;
+  right: 25px;
+  font-size: 36px;
+  margin-left: 50px;
+}
+
+@media screen and (max-height: 450px) {
+  .sidenav {padding-top: 15px;}
+  .sidenav a {font-size: 18px;}
+}
+
+/* The Modal (background) */
+.modal, .modal2 {
+  display: none; /* Hidden by default */
+  position: fixed; /* Stay in place */
+  z-index: 1; /* Sit on top */
+  padding-top: 100px; /* Location of the box */
+  left: 0;
+  top: 0;
+  width: 100%; /* Full width */
+  height: 100%; /* Full height */
+  overflow: auto; /* Enable scroll if needed */
+  background-color: rgb(0,0,0); /* Fallback color */
+  background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+}
+
+/* Modal Content */
+.modal-content {
+  background-color: #fefefe;
+  margin: auto;
+  padding: 20px;
+  border: 1px solid #888;
+  width: 80%;
+}
+
+/* The Close Button */
+.close, .close1 {
+  color: #aaaaaa;
+  float: right;
+  font-size: 28px;
+  font-weight: bold;
+}
+
+.close, .close1:hover,
+.close, .close1:focus {
+  color: #000;
+  text-decoration: none;
+  cursor: pointer;
+}
+</style>
+
+<body>
+  <header>
+    <p></p>
+      <a href="index.html"><center><img id="image1" src="https://i.ibb.co/HX6nSdx/Black-and-Cream-Hair-Stylist-Fashion-Logo-4.png" alt="Dunedin Dairy" width="100" height="100"/></center></a>
+      <div id="titleHeader">Calozies.</div>
+  </header>
+  <span style="font-size:30px;cursor:pointer;color:white;" onclick="openNav()">&#9776;</span>
+  <ul class="topnav" id="table">
+  <ul class="topnav" id="table">
+  </ul>
+  <center><h1>Workout Calculator.</h1></center>
+  <center><h5>Convert your meal into a workout</h5></center>
+  <center><img src="https://i.ibb.co/426WK0X/Untitled-design-3.png" width="130" height="160"/></center>
+  <center>Running</center>
+  <p></p>
+  <center><img src="https://i.ibb.co/SvJzrf7/Untitled-design-4.png" width="130" height="160"/></center>
+  <center>Cycling</center>
+  <p></p>
+  <center><img src="https://i.ibb.co/7rFJ0mW/Untitled-design-5.png" width="130" height="160"/></center>
+  <center>Swimming</center>
+  <p></p>
+  <center><img src="https://i.ibb.co/mHRm08s/Untitled-design-6.png" width="130" height="160"/></center>
+  <center>Rowing</center>
+  <p></p>
+  <center><img src="https://i.ibb.co/5TKQNW2/Untitled-design-7.png" width="130" height="160"/></center>
+  <center>Yoga</center>
+  <p></p>
+  <center><img src="https://i.ibb.co/MCVcL65/Untitled-design-8.png" width="130" height="160"/></center>
+  <center>Skipping</center>
+  <p></p>
+  <div id="mySidenav" class="sidenav">
+  <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
+  <a href="index.html">Home</a>
+  <a href="caloziesAbout.html">About</a>
+  <a href="CaloriesCalculator.html">Calories Calculator</a>
+  <a href="caloziesBMICalculator.html">BMI Calculator</a>
+  <a href="ExerciseConvertor.html">Exercises</a>
+</div>
+
+<!-- Trigger/Open The Modal -->
+<!--<center><button id="myBtn">Work it off</button></center>-->
+
+<!-- The Modal -->
+<div id="myModal" class="modal">
+
+  <!-- Modal content -->
+  <div id="modalDisplay" class="modal-content">
+    <span class="close">&times;</span>
+      <p>&#127939; Running: 5km</p>
+      <p>&#128690; Cycling: 15km</p>
+      <p>&#128690; Swimming: 15km</p>
+  </div>
+
+</div>
+
+<div id="myModal2" class="modal2">
+
+  <!-- Modal content -->
+  <div id="modalDisplay" class="modal-content">
+    <span class="close1">&times;</span>
+      <p>&#127939; Running: 3km</p>
+      <p>&#128690; Cycling: 10km</p>
+      <p>&#128690; Swimming: 10km</p>
+  </div>
+
+</div>
+
+<script>
+    function onSearch(){
+        alert("this works");
+    }
+    function openNav() {
+    document.getElementById("mySidenav").style.width = "250px";
+    }
+
+    function closeNav() {
+    document.getElementById("mySidenav").style.width = "0";
+    }
+</script>
+<p></p>
+</body>
+<center><footer>&copy; Calozies 2020 </footer></center>
+</html>
