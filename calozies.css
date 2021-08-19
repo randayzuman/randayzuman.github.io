@@ -1,0 +1,52 @@
+body{
+background-color:black;
+/*background-color: #eeaeca;*/
+/*background: rgb(238,174,202);
+background: radial-gradient(circle, rgba(238,174,202,1) 0%, rgba(0,0,0,1) 57%);*/
+color: white;
+}
+
+#titleHeader{
+  text-align: center;
+  font-family: "Palatino Linotype", "Book Antiqua", Palatino, serif;
+  font-size: 30px;
+  font-weight: bold;
+}
+
+#table{
+  list-style-type: none;
+  width: 100%;
+}
+
+#centred{
+  text-align: center;
+  float: left;
+}
+
+#spotifyIcon{
+  padding-left: 200px;
+}
+
+.tableElements{
+  float:left;
+  text-align: center;
+  width:19%;
+}
+
+.footer {
+   position: fixed;
+   left: 0;
+   bottom: 0;
+   width: 100%;
+   color: white;
+   text-align: center;
+}
+
+#fitsText{
+  text-align: center;
+}
+
+.modal-content{
+  color: black;
+  text-align: center;
+}
