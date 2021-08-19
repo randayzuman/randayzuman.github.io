@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Calozies</title>
+  <meta charset="UTF-8">
+  <link rel="stylesheet" href="calozies.css">
+  <link rel="icon" href="https://i.ibb.co/HX6nSdx/Black-and-Cream-Hair-Stylist-Fashion-Logo-4.png"/>
+  <style>
+  body {
+    font-family: "Lato", sans-serif;
+    /*background-image: url("https://i.ibb.co/DwZ7GyY/Untitled-design-1.png")*/
+  }
+
+  .sidenav {
+    height: 100%;
+    width: 0;
+    position: fixed;
+    z-index: 1;
+    top: 0;
+    left: 0;
+    background-color: #111;
+    overflow-x: hidden;
+    transition: 0.5s;
+    padding-top: 60px;
+  }
+
+  .sidenav a {
+    padding: 8px 8px 8px 32px;
+    text-decoration: none;
+    font-size: 25px;
+    color: #818181;
+    display: block;
+    transition: 0.3s;
+  }
+
+  .sidenav a:hover {
+    color: #f1f1f1;
+  }
+
+  .sidenav .closebtn {
+    position: absolute;
+    top: 0;
+    right: 25px;
+    font-size: 36px;
+    margin-left: 50px;
+  }
+
+  @media screen and (max-height: 450px) {
+    .sidenav {padding-top: 15px;}
+    .sidenav a {font-size: 18px;}
+  }
+  </style>
+  </head>
+  <body>
+  <header>
+    <p></p>
+      <a href="index.html"><center><img id="image1" src="https://i.ibb.co/HX6nSdx/Black-and-Cream-Hair-Stylist-Fashion-Logo-4.png" alt="Dunedin Dairy" width="100" height="100"/></center></a>
+      <div id="titleHeader">Calozies.</div>
+  </header>
+  <span style="font-size:30px;cursor:pointer;color:white;" onclick="openNav()">&#9776;</span>
+  <ul class="topnav" id="table">
+  </ul>
+  <p> </p>
+  <center><img src="https://i.ibb.co/jgXBD9d/Convert-that-burger-into-a-workout-1.png" width="1200"/></center>
+  <div id="mySidenav" class="sidenav">
+  <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
+  <a href="index.html">Home</a>
+  <a href="caloziesAbout.html">About</a>
+  <a href="CaloriesCalculator.html">Calories Calculator</a>
+  <a href="caloziesBMICalculator.html">BMI Calculator</a>
+  <a href="calorieConvertor.html">Exercises</a>
+  </div>
+
+  <script>
+  function openNav() {
+  document.getElementById("mySidenav").style.width = "250px";
+  }
+
+  function closeNav() {
+  document.getElementById("mySidenav").style.width = "0";
+  }
+
+  /*var query = '3lb carrots and a chicken sandwich'
+$.ajax({
+    method: 'GET',
+    url: 'https://api.calorieninjas.com/v1/nutrition?query=' + query,
+    headers: { 'X-Api-Key': 'jUm7UOSWtBYy7jGTvZW93Q==1jZXaAy8XgMg2A0I'},
+    contentType: 'application/json',
+    success: function(result) {
+        console.log(result);
+    },
+    error: function ajaxError(jqXHR) {
+        console.error('Error: ', jqXHR.responseText);
+    }
+});*/
+
+  </script>
+
+  <center><div class="footer"><p>&copy Calozies 2020 </p></center>
+  </body>
+  </html>
