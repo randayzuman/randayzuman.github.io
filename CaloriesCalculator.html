@@ -8,6 +8,14 @@
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 </head>
 <style>
+  table{
+            border-collapse: collapse;
+            border-spacing: 0;
+        }
+        th, td{
+            padding: 10px 20px;
+            border: 1px solid #000;
+        }
 body {
   font-family: "Lato", sans-serif;
 }
@@ -91,7 +99,7 @@ body {
 }
 </style>
 
-<body>
+<body id="body">
   <header>
     <p></p>
       <a href="index.html"><center><img id="image1" src="https://i.ibb.co/HX6nSdx/Black-and-Cream-Hair-Stylist-Fashion-Logo-4.png" alt="Dunedin Dairy" width="100" height="100"/></center></a>
@@ -104,8 +112,15 @@ body {
   <center><h1>Calculator.</h1></center>
   <center><h5>Convert your meal into a workout</h5></center>
   <div class="searchBox">
-   <center><p><input id="userSearch" placeholder="Search over 1000 food items" style="height:30px; width:500px;"></p></center>
+   <center><p><input id="query" placeholder="Search over 1000 food items" style="height:30px; width:500px;"></p></center>
    <center><p><button type="button" onclick="onSearch()"> Search </button></p></center>
+
+   <h2 id="results-title"></h2>
+    <p id="results">
+      <table id="myTable">
+        <tr></tr>
+      </table>
+    </p>
 </div>
 
 
@@ -147,8 +162,152 @@ body {
 </div>
 
 <script>
-    function onSearch(){
-        alert("this works");
+    async function onSearch(){
+      let query = document.getElementById('query').value;
+
+    /*document.getElementById('results-title').innerHTML = `Nutritional facts for: ${query}`;*/
+    /*document.getElementById('results').innerHTML = 'Loading...';*/
+
+    let url = 'https://api.calorieninjas.com/v1/nutrition?query=' + query;
+
+    let response = await fetch(
+        url,
+        {
+            method: 'GET',
+            headers: {
+                'Content-Type': 'application/json',
+                'X-Api-Key': 'jUm7UOSWtBYy7jGTvZW93Q==1jZXaAy8XgMg2A0I'
+            }
+        }
+    )
+
+    if (response.status != 200) {
+        document.getElementById('results').innerHTML = `Failed to retrieve calories for: ${query}`;
+    }
+
+  let jsonObj = await response.json(); //json object
+  let entireString = JSON.stringify(jsonObj);
+  let jsonItems = JSON.parse(entireString);
+  let key = Object.keys(jsonItems)[0];
+  console.log(jsonItems);
+  let individualItems = JSON.stringify(jsonItems[key]);
+  let myObj = JSON.parse(individualItems);
+  /**alert(myObj[0].sugar_g);**/
+  /*let table = document.createElement('table');
+  let thead = document.createElement('thead');
+  let tbody = document.createElement('tbody');
+  table.appendChild(thead);
+  table.appendChild(tbody);
+  document.getElementById('body').appendChild(table);
+  // Creating and adding data to first row of the table
+  let row_1 = document.createElement('tr');
+  let heading_1 = document.createElement('th');
+  heading_1.innerHTML = "Food";
+  let heading_2 = document.createElement('th');
+  heading_2.innerHTML = "Serving Portion";
+  let heading_3 = document.createElement('th');
+  heading_3.innerHTML = "Calories";
+  let heading_4 = document.createElement('th');
+  heading_4.innerHTML = "Total Fat";
+  let heading_5 = document.createElement('th');
+  heading_5.innerHTML = "Saturated Fat";
+  let heading_6 = document.createElement('th');
+  heading_6.innerHTML = "Carbohydrates";
+  let heading_7 = document.createElement('th');
+  heading_7.innerHTML = "Protein";
+  let heading_8 = document.createElement('th');
+  heading_8.innerHTML = "Sugar";
+
+  row_1.appendChild(heading_1);
+  row_1.appendChild(heading_2);
+  row_1.appendChild(heading_3);
+  row_1.appendChild(heading_4);
+  row_1.appendChild(heading_5);
+  row_1.appendChild(heading_6);
+  row_1.appendChild(heading_7);
+  row_1.appendChild(heading_8);
+  thead.appendChild(row_1);
+
+
+  // Creating and adding data to second row of the table
+  let row_2 = document.createElement('tr');
+  let row_2_data_1 = document.createElement('td');
+  row_2_data_1.innerHTML = "1.";
+  let row_2_data_2 = document.createElement('td');
+  row_2_data_2.innerHTML = "sugar" + myObj[0].sugar_g;
+  let row_2_data_3 = document.createElement('td');
+  row_2_data_3.innerHTML = "Netflix";
+
+  row_2.appendChild(row_2_data_1);
+  row_2.appendChild(row_2_data_2);
+  row_2.appendChild(row_2_data_3);
+  tbody.appendChild(row_2);
+  // Creating and adding data to third row of the table
+  let row_3 = document.createElement('tr');
+  let row_3_data_1 = document.createElement('td');
+  row_3_data_1.innerHTML = "2.";
+  let row_3_data_2 = document.createElement('td');
+  row_3_data_2.innerHTML = "Adam White";
+  let row_3_data_3 = document.createElement('td');
+  row_3_data_3.innerHTML = "Microsoft";
+
+  row_3.appendChild(row_3_data_1);
+  row_3.appendChild(row_3_data_2);
+  row_3.appendChild(row_3_data_3);
+  tbody.appendChild(row_3);
+    /*let row = table.insertRow(0);
+  let cell1 = row.insertCell(0);
+  cell1.innerHTML = "sugar" + myObj[0].sugar_g;*/
+  /*document.getElementById('results').innerHTML = "sugar" + myObj[0].sugar_g;*/
+  let table = document.createElement('div');
+  table.className = "container";
+  /*table.className = "split";
+  table.className = "left";*/
+  document.getElementById('body').appendChild(table);
+  let tformat = document.createElement('div');
+  tformat.className= "tableCenter";
+  table.appendChild(tformat);
+  let thead = document.createElement('p');
+  /*thead.innerHTML = `Nutritional facts for: ${query}` + myObj[0].serving_size_g;*/
+  thead.innerHTML = `Nutritional facts for: ` + myObj[0].name + " - " + myObj[0].serving_size_g + "g";
+  tformat.appendChild(thead);
+  let caloriesThead = document.createElement('div');
+  caloriesThead.innerHTML = "⚖️ Calories: " + myObj[0].calories;
+  tformat.appendChild(caloriesThead);
+  let proteinThead = document.createElement('div');
+  proteinThead.innerHTML = "🍖 Protein: " + myObj[0].protein_g + "g";
+  tformat.appendChild(proteinThead);
+  let totFatThead = document.createElement('div');
+  totFatThead.innerHTML = "🥓 Total fat: " + myObj[0].fat_total_g + "g";
+  tformat.appendChild(totFatThead);
+  let satFatThead = document.createElement('div');
+  satFatThead.innerHTML = "🍟 Saturated fat: " + myObj[0].fat_saturated_g + "g";
+  tformat.appendChild(satFatThead);
+  let carbsThead = document.createElement('div');
+  carbsThead.innerHTML = "🍚 Carbohydrates: " + myObj[0].carbohydrates_total_g + "g";
+  tformat.appendChild(carbsThead);
+  let sodiumThead = document.createElement('div');
+  sodiumThead.innerHTML = "🧂 Sodium: " + myObj[0].sodium_mg + "mg";
+  tformat.appendChild(sodiumThead);
+  let fibreThead = document.createElement('div');
+  fibreThead.innerHTML = "🌾 Fibre: " + myObj[0].fiber_g + "g";
+  tformat.appendChild(fibreThead);
+  let sugarThead = document.createElement('div');
+  sugarThead.innerHTML = "🍭 Sugar: " + myObj[0].sugar_g + "g";
+  tformat.appendChild(sugarThead);
+  let pThead = document.createElement('p');
+  tformat.appendChild(pThead);
+  let buttonThead = document.createElement('button');
+  buttonThead.innerHTML = "Convert this meal into a workout";
+  buttonThead.onclick = function(){
+    location.href = "ExerciseConvertor.html"
+  };
+  tformat.appendChild(buttonThead);
+  for(var i = 0; i < jsonItems.length; i++)
+  {
+    alert(JSON.stringify(jsonItems, null, 2));
+  }
+  /*document.getElementById('results').innerHTML = JSON.stringify(jsonObj);*/
     }
     function openNav() {
     document.getElementById("mySidenav").style.width = "250px";
@@ -160,5 +319,5 @@ body {
 </script>
 <p></p>
 </body>
-<center><footer>&copy; Calozies 2020 </footer></center>
+<center><div class="footer"><p>&copy Calozies 2020 </p></center>
 </html>
